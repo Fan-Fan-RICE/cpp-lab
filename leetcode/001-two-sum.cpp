@@ -14,19 +14,21 @@ public:
         //     }
         // }
         // return {i,j};
-        map<int,int> a;
-        vector<int> b(2,-1);
+        unordered_map<int,int> seen;
+        vector<int> index(2,-1);
         for(int i=0;i<nums.size();i++)
         {
-            if(a.count(target-nums[i])>0)
+            if(seen.count(target-nums[i])>0)
             {
-                b[0]=a[target-nums[i]];
-                b[1]=i;
+                index[0]=seen[target-nums[i]];
+                index[1]=i;
                 break;
             }
-            a[nums[i]]=i;
+            seen[nums[i]]=i;
         }
-        return b;
+        return index;
         
     }
 };
+
+"用unordered_map是因为这才是真正的哈希表，而map是红黑树"
