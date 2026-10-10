@@ -15,18 +15,25 @@ public:
         // }
         // return {i,j};
         unordered_map<int,int> seen;
-        vector<int> index(2,-1);
-        for(int i=0;i<nums.size();i++)
+      //  vector<int> index(2,-1);
+        for(int i=0;i<(int)nums.size();i++)
         {
-            if(seen.count(target-nums[i])>0)
+            int need =target - nums[i];
+            auto it =seen.find(need);
+            if(it!= seen.end())
             {
-                index[0]=seen[target-nums[i]];
-                index[1]=i;
-                break;
+                return{it->second,i};
             }
             seen[nums[i]]=i;
+            // if(seen.count(target-nums[i])>0)
+            // {
+            //     index[0]=seen[target-nums[i]];
+            //     index[1]=i;
+            //     break;
+            // }
+            // seen[nums[i]]=i;
         }
-        return index;
+        return {};
         
     }
 };
